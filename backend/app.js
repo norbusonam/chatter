@@ -1,6 +1,6 @@
 const express = require('express');
 const http = require('http');
-const { Server } = require("socket.io");
+const { Server } = require('socket.io');
 
 // server and socket setup
 const app = express();
@@ -12,14 +12,8 @@ const io = new Server(server, {
   }
 });
 
-io.on('connection', (socket) => {
-
-    console.log('a user connected');
-
-    socket.on('disconnect', () => {
-      console.log('user disconnected');
-    });
-
+io.on('connect', (socket) => {
+  socket.on('create:message', require('./socket-handlers/createMessage')(io))
 });
 
 // TODO: make port an enviornment variable
