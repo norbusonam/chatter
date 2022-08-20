@@ -25,7 +25,7 @@ export default function Chat({ room }) {
   }, [messages]);
 
   return (
-    <div className='grow bg-gray-700 flex flex-col'>
+    <div className='grow bg-gray-700 flex flex-col max-h-screen'>
       <ChatHeader roomEmoji={room.emoji} roomName={room.name} />
       <ChatMessages messages={messages}/>
       <ChatNewMessage socket={socket} />
