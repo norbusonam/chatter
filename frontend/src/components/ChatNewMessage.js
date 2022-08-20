@@ -20,7 +20,7 @@ export default function ChatNewMessage({ socket }) {
         onKeyDown={sendMessageIfEnter}
         onChange={e => setMessage(e.target.value)}
         value={message}
-        className={`w-full h-10 px-3 pt-2 bg-gray-500 text-gray-100 rounded-md resize-none`}
+        className={`w-full h-10 px-3 pt-2 bg-gray-500 text-gray-100 rounded-md resize-none outline-none`}
         placeholder="Send message...">
       </textarea>
     </div>
