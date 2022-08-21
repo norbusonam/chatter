@@ -4,7 +4,7 @@ import RoomListItem from "./RoomListItem";
 export default function RoomList({ selectedRoom, setRoom }) {
 
   return (
-    <div className="w-60 h-screen bg-gray-600 text-center px-1 pt-2">
+    <div className="bg-gray-600 text-center px-1 pt-2 grow">
       {
         Rooms.map(room =>
           <RoomListItem 
