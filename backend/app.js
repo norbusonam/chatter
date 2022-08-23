@@ -1,6 +1,8 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
+const setupSockets = require('./config/sockets');
+const registerRoutes = require('./config/routes');
 
 // server and socket setup
 const app = express();
@@ -12,9 +14,8 @@ const io = new Server(server, {
   }
 });
 
-io.on('connect', (socket) => {
-  socket.on('create:message', require('./socket-handlers/createMessage')(io))
-});
+registerRoutes(app);
+setupSockets(io);
 
 // TODO: make port an enviornment variable
 server.listen(3001, () => {
