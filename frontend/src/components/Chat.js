@@ -13,7 +13,7 @@ export default function Chat({ room }) {
 
   useEffect(() => {
 
-    socket.on('new:message', (msg) => {
+    socket.on('message:new', (msg) => {
       setMessages([...messages, msg]);
     })
 

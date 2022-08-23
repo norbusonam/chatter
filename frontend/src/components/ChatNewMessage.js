@@ -6,7 +6,7 @@ export default function ChatNewMessage({ socket }) {
 
   const sendMessageIfEnter = (e) => {
     if (e.code === 'Enter') {
-      socket.emit('create:message', {
+      socket.emit('message:create', {
         user: 'user._id',
         body: message,
       });
