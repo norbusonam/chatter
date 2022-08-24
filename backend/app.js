@@ -1,8 +1,13 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
-const setupSockets = require('./config/sockets');
+const dotenv = require('dotenv');
 const registerRoutes = require('./config/routes');
+const setupSockets = require('./config/sockets');
+const connectDb = require('./config/db');
+
+// load env variables
+dotenv.config();
 
 // server and socket setup
 const app = express();
@@ -16,6 +21,7 @@ const io = new Server(server, {
 
 registerRoutes(app);
 setupSockets(io);
+connectDb()
 
 // TODO: make port an enviornment variable
 server.listen(3001, () => {
