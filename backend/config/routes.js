@@ -1,9 +1,23 @@
+const createUser = require('../controller/user/create');
+const getUser = require('../controller/user/get');
+const getMe = require('../controller/user/me');
+const createRoom = require('../controller/room/create');
+const queryRooms = require('../controller/room/query');
+const createUserInRoom = require('../controller/user-in-room/create');
+const checkAuth = require('../middleware/http/checkAuth');
+
 module.exports = (app) => {
 
-  // TODO: room routes
+  // room routes
+  app.post('/room', createRoom);
+  app.get('/room', queryRooms);
 
-  // TODO: user routes
+  // user routes
+  app.post('/user', createUser);
+  app.get('/user/:id', getUser);
+  app.get('/user/me', checkAuth, getMe);
 
-  // TODO: user to room (many to many) routes
+  // user in room routes
+  app.post('/user-in-room', createUserInRoom)
 
 }
