@@ -23,7 +23,7 @@ registerRoutes(app);
 setupSockets(io);
 connectDb()
 
-// TODO: make port an enviornment variable
-server.listen(3001, () => {
-    console.log('Server is listening on port 3001');
+const port = process.env.PORT || 3001
+server.listen(port, () => {
+    console.log(`Server is listening on port ${port}`);
 });
