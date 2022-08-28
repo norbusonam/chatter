@@ -8,10 +8,11 @@ module.exports = (req, res, next) => {
     const token = authorizationToken.split(' ')[1];
     const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET)
     if (decodedToken && decodedToken.userId) {
+      req.userId = decodedToken.userId;
       return next();
     }
   }
 
-  return res.sendStatus(401);
+  return res.sendStatus(403);
 
 }

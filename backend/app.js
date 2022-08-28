@@ -11,6 +11,7 @@ dotenv.config();
 
 // server and socket setup
 const app = express();
+app.use(express.json());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {

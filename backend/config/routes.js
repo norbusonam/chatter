@@ -1,4 +1,5 @@
 const createUser = require('../controller/user/create');
+const loginUser = require('../controller/user/login');
 const getUser = require('../controller/user/get');
 const getMe = require('../controller/user/me');
 const createRoom = require('../controller/room/create');
@@ -13,9 +14,10 @@ module.exports = (app) => {
   app.get('/room', queryRooms);
 
   // user routes
-  app.post('/user', createUser);
-  app.get('/user/:id', getUser);
+  app.post('/user/login', loginUser);
+  app.post('/user/signup', createUser);
   app.get('/user/me', checkAuth, getMe);
+  app.get('/user/:username', getUser);
 
   // user in room routes
   app.post('/user-in-room', createUserInRoom)
