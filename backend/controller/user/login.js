@@ -1,36 +1,47 @@
 const User = require('../../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { body } = require('express-validator');
 
-module.exports = async (req, res) => {
+module.exports = {
 
-  const payload = req.body;
+  validations: [
+    body('username')
+      .isString(),
+    body('password')
+    .isString(),
+  ],
+  
+  fn: async (req, res) => {
 
-  const user = await User.findOne({
-    username: payload.username
-  });
+    const payload = req.body;
 
-  // check user exists
-  if (!user) {
-    return res
-      .status(404)
-      .send('A user with that username does not exist');
+    const user = await User.findOne({
+      username: payload.username
+    });
+
+    // check user exists
+    if (!user) {
+      return res
+        .status(404)
+        .send('A user with that username does not exist');
+    }
+  
+    // check password match
+    const passwordMatch = await bcrypt.compare(payload.password, user.password);
+    if (!passwordMatch) {
+      return res
+        .status(401)
+        .send('Incorrect password');
+    }
+
+    const token = jwt.sign({
+      userId: user.id
+    }, process.env.TOKEN_SECRET);
+
+    return res.send({
+      token,
+    });
   }
- 
-  // check password match
-  const passwordMatch = await bcrypt.compare(payload.password, user.password);
-  if (!passwordMatch) {
-    return res
-      .status(404)
-      .send('Incorrect password');
-  }
-
-  const token = jwt.sign({
-    userId: user.id
-  }, process.env.TOKEN_SECRET);
-
-  return res.send({
-    token,
-  });
 
 }

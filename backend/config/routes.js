@@ -6,6 +6,7 @@ const createRoom = require('../controller/room/create');
 const queryRooms = require('../controller/room/query');
 const createUserInRoom = require('../controller/user-in-room/create');
 const checkAuth = require('../middleware/http/checkAuth');
+const validate = require('../middleware/http/validate');
 
 module.exports = (app) => {
 
@@ -14,10 +15,10 @@ module.exports = (app) => {
   app.get('/room', queryRooms);
 
   // user routes
-  app.post('/user/login', loginUser);
-  app.post('/user/signup', createUser);
-  app.get('/user/me', checkAuth, getMe);
-  app.get('/user/:username', getUser);
+  app.post('/user/login', validate(loginUser.validations), loginUser.fn);
+  app.post('/user/signup', validate(createUser.validations), createUser.fn);
+  app.get('/user/me', checkAuth, getMe.fn);
+  app.get('/user/:username', validate(getUser.validations), getUser.fn);
 
   // user in room routes
   app.post('/user-in-room', createUserInRoom)

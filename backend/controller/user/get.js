@@ -1,20 +1,32 @@
 const User = require('../../models/User');
 
-module.exports = async (req, res) => {
+const { param } = require('express-validator')
 
-  const { username } = req.params;
+module.exports = {
 
-  const user = await User.findOne({
-    username
-  })
+  validations: [
+    param('username')
+      .isString(),
+  ],
 
-  // check exists
-  if (!user) {
-    return res.sendStatus(404);
+  fn: async (req, res) => {
+
+    const { username } = req.params;
+
+    const user = await User.findOne({
+      username
+    })
+
+    // check exists
+    if (!user) {
+      return res
+        .status(404)
+        .send('User not found');
+    }
+
+    return res.send({
+      user
+    })
   }
-
-  return res.send({
-    user
-  })
 
 }
