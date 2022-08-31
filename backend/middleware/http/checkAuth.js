@@ -6,8 +6,14 @@ module.exports = (req, res, next) => {
 
   if (authorizationToken) {
     const token = authorizationToken.split(' ')[1];
-    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET)
-    if (decodedToken && decodedToken.userId) {
+    let verifySuccess = true;
+    let decodedToken;
+    try {
+      decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+    } catch(err) {
+      verifySuccess = false;
+    }
+    if (verifySuccess && decodedToken && decodedToken.userId) {
       req.userId = decodedToken.userId;
       return next();
     }
