@@ -5,12 +5,14 @@ const roomSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
+    minLength: 5,
+    maxLength: 15,
   },
   emoji: {
     type: String,
     required: true,
-    minLength: 1,
-    maxLength: 1,
+    minLength: 2,     // for some reason, emojis count as
+    maxLength: 2,     // two characters 🤦‍♂️
   },
   description: {
     type: String,
@@ -20,9 +22,9 @@ const roomSchema = mongoose.Schema({
 }, {
 
   timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  }
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+  },
 
 });
 
