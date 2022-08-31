@@ -11,8 +11,8 @@ const validate = require('../middleware/http/validate');
 module.exports = (app) => {
 
   // room routes
-  app.post('/room', createRoom);
-  app.get('/room', queryRooms);
+  app.post('/room', checkAuth, validate(createRoom.validations), createRoom.fn);
+  app.get('/room', queryRooms.fn);
 
   // user routes
   app.post('/user/login', validate(loginUser.validations), loginUser.fn);
@@ -21,6 +21,6 @@ module.exports = (app) => {
   app.get('/user/:username', validate(getUser.validations), getUser.fn);
 
   // user in room routes
-  app.post('/user-in-room', createUserInRoom)
+  app.post('/user-in-room', createUserInRoom);
 
 }
