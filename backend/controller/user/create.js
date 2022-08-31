@@ -7,7 +7,8 @@ module.exports = {
   
   validations: [
     body('name')
-      .isString(),
+      .isString()
+      .trim(),
     body('email')
       .isString()
       .isEmail()
