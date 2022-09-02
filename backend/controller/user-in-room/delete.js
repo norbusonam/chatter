@@ -1,13 +1,13 @@
 module.exports = {
 
-  // joining room
+  // leaving room
 
   validations: [
-    
+
   ],
 
   fn: (req, res) => {
 
   }
-
+  
 }
