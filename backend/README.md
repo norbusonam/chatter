@@ -2,7 +2,7 @@
 
 ## Models
 
-- **User:** 
+- **User** 
 - **Room**
 - **UserInRoom**
 - **Message**
