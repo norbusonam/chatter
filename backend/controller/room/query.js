@@ -7,7 +7,8 @@ module.exports = {
 
   validations: [
     query('query')
-      .isString(),
+      .isString()
+      .optional(),
     query('onlyMine')
       .isBoolean()
       .isIn(['true', 'false']),
@@ -17,11 +18,13 @@ module.exports = {
 
     const { query, onlyMine } = req.query
 
-    const filter = {
-      $or: [
+    const filter = {}
+
+    if (!!query) {
+     filter.$or = [
         { name: { $regex: '.*' + query + '.*' } },
         { description: { $regex: '.*' + query + '.*' } },
-      ],
+      ];
     }
 
     // TODO: find a better way to parse query booleans
