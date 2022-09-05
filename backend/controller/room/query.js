@@ -30,13 +30,10 @@ module.exports = {
         { user: req.userId },
         ['room']
       );
-      console.log(userRooms.map(userRoom => userRoom.room));
       filter._id = {
         $in: userRooms.map(userRoom => userRoom.room),
       };
     }
-
-    console.log(filter);
 
     const rooms = await Room.find(filter);
 
