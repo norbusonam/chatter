@@ -1,5 +1,5 @@
 const { param } = require("express-validator");
-const UserInRoom = require("../../models/UserInRoom");
+const UserInRoom = require("../../../models/UserInRoom");
 
 module.exports = {
 

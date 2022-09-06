@@ -1,6 +1,6 @@
 const { query } = require('express-validator');
-const Room = require('../../models/Room');
-const UserInRoom = require('../../models/UserInRoom');
+const Room = require('../../../models/Room');
+const UserInRoom = require('../../../models/UserInRoom');
 
 
 module.exports = {

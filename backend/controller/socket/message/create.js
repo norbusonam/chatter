@@ -1,7 +1,7 @@
 const Message = require('../../../models/Message');
 
 module.exports = (socket, io) => {
-  return (roomId, messageBody) => {
+  return async (roomId, messageBody) => {
 
     const userId = socket.userId;
 
