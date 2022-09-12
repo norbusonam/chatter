@@ -9,7 +9,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [isUserLoading, setIsUserLoading] = useState(false);
   const [rooms, setRooms] = useState([]);
-  const [roomsIsLoading, setRoomsIsLoading] = useState(null);
+  const [isRoomsLoading, setIsRoomsLoading] = useState(false);
   const [currentRoom, setCurrentRoom] = useState([]);
 
   useEffect(() => {
@@ -22,7 +22,11 @@ function App() {
 
   useEffect(() => {
     if (!!user) {
-
+      setIsRoomsLoading(true);
+      getRooms().then(res => {
+        setRooms(res.rooms)
+        isUserLoading(false);
+      })
     }
   }, [user]);
 
@@ -34,7 +38,7 @@ function App() {
         :
           !!user ?
             <div className='flex'>
-              <Sidebar currentRoom={currentRoom} setCurrentRoom={setCurrentRoom} rooms={rooms} user={user}/>
+              <Sidebar currentRoom={currentRoom} setCurrentRoom={setCurrentRoom} rooms={rooms} user={user} isRoomsLoading={isRoomsLoading}/>
               {
                 !!currentRoom ?
                   <Chat room={currentRoom}/>
