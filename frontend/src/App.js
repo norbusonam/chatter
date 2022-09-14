@@ -14,19 +14,29 @@ function App() {
 
   useEffect(() => {
     setIsUserLoading(true);
-    getMe().then(res => {
-      setUser(res.user);
-      setIsUserLoading(false);
-    });
+    getMe()
+      .then(res => {
+        setUser(res.user);
+        setIsUserLoading(false);
+      })
+      .catch(err => {
+        console.log(err);
+        setIsUserLoading(false);
+      })
   }, []);
 
   useEffect(() => {
     if (!!user) {
       setIsRoomsLoading(true);
-      getRooms().then(res => {
-        setRooms(res.rooms)
-        isUserLoading(false);
-      })
+      getRooms()
+        .then(res => {
+          setRooms(res.rooms)
+          setIsRoomsLoading(false);
+        })
+        .catch(err => {
+          console.log(err)
+          setIsRoomsLoading(false);
+        })
     }
   }, [user]);
 
