@@ -1,4 +1,4 @@
-const createUser = require('../controller/http/user/create');
+const signupUser = require('../controller/http/user/signup');
 const loginUser = require('../controller/http/user/login');
 const getUser = require('../controller/http/user/get');
 const getMe = require('../controller/http/user/me');
@@ -16,7 +16,7 @@ module.exports = (app) => {
 
   // user routes
   app.post   ('/user/login', validate(loginUser.validations), loginUser.fn);
-  app.post   ('/user/signup', validate(createUser.validations), createUser.fn);
+  app.post   ('/user/signup', validate(signupUser.validations), signupUser.fn);
   app.get    ('/user/me', checkAuth, getMe.fn);
   app.get    ('/user/:username', validate(getUser.validations), getUser.fn);
 
