@@ -40,6 +40,7 @@ module.exports = {
     }, process.env.TOKEN_SECRET);
 
     return res.send({
+      user,
       token,
     });
   }
