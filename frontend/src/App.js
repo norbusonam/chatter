@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Auth from './components/Auth';
 import Chat from "./components/Chat";
 import ChatPlaceholder from './components/ChatPlaceholder'
 import Sidebar from './components/Sidebar';
@@ -57,7 +58,7 @@ function App() {
               }
             </div>
           :
-            <h1>log in!</h1> // TODO: some authentication here
+            <Auth setUser={setUser}/>
       }
     </div>
   );
