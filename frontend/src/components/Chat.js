@@ -26,10 +26,16 @@ export default function Chat({ room }) {
   // update chat on room change
   useEffect(() => {
     setIsMessagesLoading(true);
-    getMessages().then(res => {
-      setMessages(res.messages);
-      setIsMessagesLoading(false);
-    })
+    getMessages()
+      .then(res => {
+        setMessages(res.messages);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsMessagesLoading(false)
+      });
   }, [room])
 
   return (

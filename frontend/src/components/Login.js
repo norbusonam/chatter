@@ -5,8 +5,10 @@ export default function Login({ setUser }) {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoginLoading, setIsLoginLoading] = useState(false);
 
-  const onLogin = (e) => {
+  const onLogin = () => {
+    setIsLoginLoading(true);
     login({ username, password })
       .then(res => {
         localStorage.setItem('authToken', res.au)
@@ -15,6 +17,9 @@ export default function Login({ setUser }) {
       .catch(err => {
         console.log(err);
       })
+      .finally(() => {
+        setIsLoginLoading(false)
+      });
   }
 
   return (
@@ -40,7 +45,8 @@ export default function Login({ setUser }) {
         <br />
         <div className="pb-2 px-4">
           <button
-            type="submit">
+            type="submit"
+            disabled={isLoginLoading}>
               Submit
           </button>
         </div>

@@ -18,12 +18,13 @@ function App() {
     getMe()
       .then(res => {
         setUser(res.user);
-        setIsUserLoading(false);
       })
       .catch(err => {
         console.log(err);
-        setIsUserLoading(false);
       })
+      .finally(() => {
+        setIsUserLoading(false)
+      });
   }, []);
 
   useEffect(() => {
@@ -32,12 +33,13 @@ function App() {
       getRooms()
         .then(res => {
           setRooms(res.rooms)
-          setIsRoomsLoading(false);
         })
         .catch(err => {
           console.log(err)
-          setIsRoomsLoading(false);
         })
+        .finally(() => {
+          setIsRoomsLoading(false)
+        });
     }
   }, [user]);
 
