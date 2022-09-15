@@ -7,12 +7,13 @@ export default function Login({ setUser }) {
   const [password, setPassword] = useState('');
   const [isLoginLoading, setIsLoginLoading] = useState(false);
 
-  const onLogin = () => {
+  const onLogin = (e) => {
+    e.preventDefault();
     setIsLoginLoading(true);
     login({ username, password })
       .then(res => {
-        localStorage.setItem('authToken', res.au)
-        setUser(res.user);
+        localStorage.setItem('authToken', 'Bearer ' + res.data.token)
+        setUser(res.data.token);
       })
       .catch(err => {
         console.log(err);
@@ -37,6 +38,7 @@ export default function Login({ setUser }) {
         <div className="pb-2 px-4">
           <input
             value={password}
+            type="password"
             placeholder="password"
             className={`w-60 px-3 h-10 bg-gray-600 text-gray-100 rounded-md outline-none`}
             onChange={(e) => setPassword(e.target.value)}>
@@ -46,8 +48,9 @@ export default function Login({ setUser }) {
         <div className="pb-2 px-4">
           <button
             type="submit"
+            className='w-60 text-gray-100 bg-gray-700 hover:bg-gray-900 hover:text-opacity-80 transition-colors rounded-md p-2 mb-1 text-opacity-60 text-center'
             disabled={isLoginLoading}>
-              Submit
+              Login
           </button>
         </div>
       </form>
