@@ -5,7 +5,9 @@ const API_URL = process.env.REACT_APP_API_URL
 export const getMe = () => {
   const authToken = window.localStorage.getItem('authToken');
   return axios.get(API_URL + 'user/me', {
-    auth: authToken,
+    headers: {
+      authorization: authToken,
+    },
   });
 }
 
@@ -20,7 +22,9 @@ export const signup = (payload) => {
 export const createRoom = (payload) => {
   const authToken = window.localStorage.getItem('authToken');
   return axios.post(API_URL + 'room', payload, {
-    auth: authToken,
+    headers: {
+      authorization: authToken,
+    },
   });
 }
 
@@ -28,20 +32,26 @@ export const getRooms = () => {
   // just gets user's rooms for now
   const authToken = window.localStorage.getItem('authToken');
   return axios.get(API_URL + 'room?onlyMine=true', {
-    auth: authToken,
+    headers: {
+      authorization: authToken,
+    },
   });
 }
 
 export const getMessages = (roomId, payload) => {
   const authToken = window.localStorage.getItem('authToken');
-  return axios.get(API_URL + `room/${roomId}/message`, {
-    auth: authToken,
+  return axios.get(API_URL + `room/${roomId}/message?before=${payload.before}&limit=50`, {
+    headers: {
+      authorization: authToken,
+    },
   });
 }
 
 export const getUsersInRoom = (roomId, payload) => {
   const authToken = window.localStorage.getItem('authToken');
   return axios.get(API_URL + `room/${roomId}/user`, {
-    auth: authToken,
+    headers: {
+      authorization: authToken,
+    },
   });
 }
