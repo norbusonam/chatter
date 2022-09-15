@@ -40,7 +40,9 @@ module.exports = {
 
     const rooms = await Room.find(filter);
 
-    return res.send(rooms);
+    return res.send({
+      rooms
+    });
 
   }
 

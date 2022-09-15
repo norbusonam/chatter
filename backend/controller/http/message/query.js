@@ -7,7 +7,7 @@ module.exports = {
     param('roomId')
       .isString(),
     query('before')
-      .isDate(),
+      .isISO8601(),
     query('limit')
       .isInt()
       .default(30),
