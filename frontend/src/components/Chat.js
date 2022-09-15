@@ -21,29 +21,32 @@ export default function Chat({ room }) {
       socket.off('connect');
       socket.off('disconnect');
     };
-  }, [messages]);
+  }, []);
 
   // update chat on room change
   useEffect(() => {
-    setIsMessagesLoading(true);
-    getMessages()
-      .then(res => {
-        setMessages(res.messages);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-      .finally(() => {
-        setIsMessagesLoading(false)
-      });
-  }, [room])
+    if (!!room) {
+      setIsMessagesLoading(true);
+      getMessages(room.id, { before: new Date().toISOString() })
+        .then(res => {
+          setMessages(res.data.messages);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        .finally(() => {
+          setIsMessagesLoading(false)
+        });
+    }
+  }, [room]);
 
   return (
     <div className='grow bg-gray-700 flex flex-col max-h-screen'>
       <ChatHeader roomEmoji={room.emoji} roomName={room.name} />
       {
         isMessagesLoading 
-          ? <p>loading...</p>
+          ? <div className="grow text-gray-100
+          "><p>loading...</p></div>
           : <ChatMessages messages={messages}/>
       }
       <ChatNewMessage socket={socket} />

@@ -7,7 +7,7 @@ export default function RoomList({ currentRoom, setCurrentRoom, rooms }) {
       {
         rooms.map(room =>
           <RoomListItem 
-            key={room._id} 
+            key={room.id} 
             room={room} 
             isSelected={!!currentRoom && currentRoom._id === room._id}
             setRoom={setCurrentRoom}

@@ -9,12 +9,14 @@ export default function Sidebar({ currentRoom, setCurrentRoom, rooms, user, isRo
       {
         isRoomsLoading 
         ?
-          <div>
-            <RoomList currentRoom={currentRoom} setCurrentRoom={setCurrentRoom} rooms={rooms} is/>
-            { !!user && <UserCard user={user} /> }
+          <div className="bg-gray-800 px-1 pt-2 grow text-gray-100">
+            <p>loading...</p>
           </div>
         :
-          <p>loading...</p>
+          <>
+            <RoomList currentRoom={currentRoom} setCurrentRoom={setCurrentRoom} rooms={rooms}/>
+            { !!user && <UserCard user={user} /> }
+          </>
       }
     </div>
   )

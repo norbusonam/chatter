@@ -11,13 +11,13 @@ function App() {
   const [isUserLoading, setIsUserLoading] = useState(false);
   const [rooms, setRooms] = useState([]);
   const [isRoomsLoading, setIsRoomsLoading] = useState(false);
-  const [currentRoom, setCurrentRoom] = useState([]);
+  const [currentRoom, setCurrentRoom] = useState(null);
 
   useEffect(() => {
     setIsUserLoading(true);
     getMe()
       .then(res => {
-        setUser(res.user);
+        setUser(res.data.user);
       })
       .catch(err => {
         console.log(err);
@@ -32,7 +32,7 @@ function App() {
       setIsRoomsLoading(true);
       getRooms()
         .then(res => {
-          setRooms(res.rooms)
+          setRooms(res.data.rooms)
         })
         .catch(err => {
           console.log(err)
@@ -47,7 +47,9 @@ function App() {
     <div>
       {
         isUserLoading ?
-          <p>loading...</p>
+        <div className="bg-gray-800 w-screen h-screen text-gray-100">
+            <p>loading...</p>
+          </div>
         :
           !!user ?
             <div className='flex'>
