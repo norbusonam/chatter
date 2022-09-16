@@ -21,7 +21,7 @@ export default function Signup({ setUser }) {
         console.log(err);
       })
       .finally(() => {
-        setIsSignupLoading(false)
+        setIsSignupLoading(false);
       });
   }
 

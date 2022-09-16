@@ -12,14 +12,14 @@ export default function Login({ setUser }) {
     setIsLoginLoading(true);
     login({ username, password })
       .then(res => {
-        localStorage.setItem('authToken', 'Bearer ' + res.data.token)
+        localStorage.setItem('authToken', 'Bearer ' + res.data.token);
         setUser(res.data.token);
       })
       .catch(err => {
         console.log(err);
       })
       .finally(() => {
-        setIsLoginLoading(false)
+        setIsLoginLoading(false);
       });
   }
 
