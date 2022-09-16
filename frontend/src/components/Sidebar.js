@@ -2,7 +2,7 @@ import RoomList from "./RoomList";
 import UserCard from "./UserCard";
 
 
-export default function Sidebar({ currentRoom, setCurrentRoom, rooms, user, isRoomsLoading }) {
+export default function Sidebar({ currentRoom, setCurrentRoom, rooms, user, isRoomsLoading, setUser }) {
 
   return (
     <div className="w-60 h-screen max-h-screen flex flex-col">
@@ -15,7 +15,7 @@ export default function Sidebar({ currentRoom, setCurrentRoom, rooms, user, isRo
         :
           <>
             <RoomList currentRoom={currentRoom} setCurrentRoom={setCurrentRoom} rooms={rooms}/>
-            { !!user && <UserCard user={user} /> }
+            { !!user && <UserCard user={user} setUser={setUser}/> }
           </>
       }
     </div>

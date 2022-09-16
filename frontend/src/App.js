@@ -40,6 +40,8 @@ function App() {
         .finally(() => {
           setIsRoomsLoading(false)
         });
+    } else {
+      setRooms([]);
     }
   }, [user]);
 
@@ -53,7 +55,7 @@ function App() {
         :
           !!user ?
             <div className='flex'>
-              <Sidebar currentRoom={currentRoom} setCurrentRoom={setCurrentRoom} rooms={rooms} user={user} isRoomsLoading={isRoomsLoading}/>
+              <Sidebar currentRoom={currentRoom} setCurrentRoom={setCurrentRoom} rooms={rooms} user={user} isRoomsLoading={isRoomsLoading} setUser={setUser}/>
               {
                 !!currentRoom ?
                   <Chat room={currentRoom}/>
