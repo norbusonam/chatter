@@ -10,7 +10,8 @@ Chatter is chat app where you can communicate with other users in rooms.
   - MongoDB
   - REST API
 - Frontend
-  - TBD
+  - React
+  - Tailwind CSS
 
 ## How to get Chatter up and running 🏃🏻
 
