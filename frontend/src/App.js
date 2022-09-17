@@ -49,7 +49,7 @@ function App() {
     setUser(null);
     setRooms([]);
     setCurrentRoom(null);
-    localStorage('authToken', null);
+    localStorage.setItem('authToken', null);
   }
 
   return (
