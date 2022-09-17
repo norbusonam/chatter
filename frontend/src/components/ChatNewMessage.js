@@ -1,16 +1,27 @@
 import { useState } from "react";
 
-export default function ChatNewMessage({ socket }) {
+export default function ChatNewMessage({ socket, user, room }) {
 
   const [message, setMessage] = useState('');
 
   const sendMessageIfEnter = (e) => {
+
     if (e.code === 'Enter') {
-      socket.emit('message:create', {
-        user: 'user._id',
-        body: message,
-      });
-      setMessage('');
+      e.preventDefault();
+      e.stopPropagation();
+      if (!!message) {
+        // TODO: this really needs to be authenticated
+        // const authToken = localStorage.getItem('authToken');
+        socket.emit('message:create', {
+          from: user.id,
+          room: room.id,
+          body: message,
+        });
+        setMessage('');
+      }
+    }
+
+    if (!!message && e.code === 'Enter') {
     }
   };
   

@@ -65,7 +65,7 @@ function App() {
               <Sidebar currentRoom={currentRoom} setCurrentRoom={setCurrentRoom} rooms={rooms} user={user} logoutUser={logoutUser}/>
               {
                 !!currentRoom ?
-                  <Chat room={currentRoom}/>
+                  <Chat room={currentRoom} user={user} />
                 :
                   <ChatPlaceholder />
               }
