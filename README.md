@@ -1,3 +1,5 @@
+[![Frontend CI/CD](https://github.com/norbusonam/chatter/actions/workflows/azure-static-web-apps-ambitious-wave-06d0c7410.yml/badge.svg)](https://github.com/norbusonam/chatter/actions/workflows/azure-static-web-apps-ambitious-wave-06d0c7410.yml) [![Backend CI/CD](https://github.com/norbusonam/chatter/actions/workflows/main_chatter-api.yml/badge.svg)](https://github.com/norbusonam/chatter/actions/workflows/main_chatter-api.yml)
+
 # Chatter 💬
 
 Chatter is chat app where you can communicate with other users in rooms.
