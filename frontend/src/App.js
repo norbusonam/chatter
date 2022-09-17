@@ -14,17 +14,20 @@ function App() {
   const [currentRoom, setCurrentRoom] = useState(null);
 
   useEffect(() => {
-    setIsUserLoading(true);
-    getMe()
-      .then(res => {
-        setUser(res.data.user);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-      .finally(() => {
-        setIsUserLoading(false)
-      });
+    const authToken = localStorage.getItem('authToken');
+    if (!!authToken) {
+      setIsUserLoading(true);
+      getMe()
+        .then(res => {
+          setUser(res.data.user);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        .finally(() => {
+          setIsUserLoading(false)
+        });
+    }
   }, []);
 
   useEffect(() => {
@@ -49,7 +52,7 @@ function App() {
     setUser(null);
     setRooms([]);
     setCurrentRoom(null);
-    localStorage.setItem('authToken', null);
+    localStorage.removeItem('authToken');
   }
 
   return (
