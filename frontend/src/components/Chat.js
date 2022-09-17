@@ -32,7 +32,7 @@ export default function Chat({ room, user }) {
       socket.off('connect');
       socket.off('disconnect');
     };
-  }, []);
+  }, [messages]);
 
   // update chat on room change
   useEffect(() => {
@@ -57,8 +57,8 @@ export default function Chat({ room, user }) {
       
       {
         !isConnected && 
-          <div>
-            Socket it not connected, messages may not be up to date ☹️ try <a onClick={window.location.reload(true)}>refreshing</a>
+          <div className="text-red-300 p-2 bg-gray-500 shadow-md">
+            Socket failed to connected, messages may not be up to date ☹️ <button onClick={() => window.location.reload()} className='underline'>try refreshing</button>
           </div>
       }
       {

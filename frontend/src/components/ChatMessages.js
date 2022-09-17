@@ -13,7 +13,7 @@ export default function ChatMessages({ messages }) {
     <div className="grow overflow-scroll">
       {
         messages.map(message => {
-          return <ChatMessage key={message._id} message={message}/>
+          return <ChatMessage key={message.id} message={message}/>
         })
       }
       <div ref={messagesEnd}></div>
