@@ -6,6 +6,7 @@ export default function Login({ setUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoginLoading, setIsLoginLoading] = useState(false);
+  const [failedToLogin, setFailedToLogin] = useState(false);
 
   const onLogin = (e) => {
     e.preventDefault();
@@ -17,6 +18,7 @@ export default function Login({ setUser }) {
       })
       .catch(err => {
         console.log(err);
+        setFailedToLogin(true);
       })
       .finally(() => {
         setIsLoginLoading(false);
@@ -25,6 +27,7 @@ export default function Login({ setUser }) {
 
   return (
     <div>
+      { failedToLogin && <p className="text-red-200 pb-4">Failed to login ☹️</p> }
       <form onSubmit={onLogin}>
         <div className="pb-2 px-4">
           <input

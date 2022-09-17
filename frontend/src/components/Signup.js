@@ -8,6 +8,7 @@ export default function Signup({ setUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isSignupLoading, setIsSignupLoading] = useState(false);
+  const [failedToSignup, setFailedToSignup] = useState(false);
 
   const onSignup = (e) => {
     e.preventDefault();
@@ -19,6 +20,7 @@ export default function Signup({ setUser }) {
       })
       .catch(err => {
         console.log(err);
+        setFailedToSignup(true);
       })
       .finally(() => {
         setIsSignupLoading(false);
@@ -27,6 +29,7 @@ export default function Signup({ setUser }) {
 
   return (
     <div>
+     { failedToSignup && <p className="text-red-200 pb-4">Failed to signup ☹️</p> }
       <form onSubmit={onSignup}>
         <div className="pb-2 px-4">
           <input
