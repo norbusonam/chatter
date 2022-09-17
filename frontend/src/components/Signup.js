@@ -8,7 +8,7 @@ export default function Signup({ setUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isSignupLoading, setIsSignupLoading] = useState(false);
-  const [failedToSignup, setFailedToSignup] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const onSignup = (e) => {
     e.preventDefault();
@@ -19,8 +19,12 @@ export default function Signup({ setUser }) {
         setUser(res.data.user);
       })
       .catch(err => {
-        console.log(err);
-        setFailedToSignup(true);
+        console.log(err.response)
+        if (err.response.data && typeof(err.response.data) === 'string') {
+          setErrorMessage(err.response.data)
+        } else {
+          setErrorMessage('Failed to signup ☹️')
+        }
       })
       .finally(() => {
         setIsSignupLoading(false);
@@ -29,7 +33,7 @@ export default function Signup({ setUser }) {
 
   return (
     <div>
-     { failedToSignup && <p className="text-red-200 pb-4">Failed to signup ☹️</p> }
+     { errorMessage && <p className="text-red-200 pb-4">{errorMessage}</p> }
       <form onSubmit={onSignup}>
         <div className="pb-2 px-4">
           <input

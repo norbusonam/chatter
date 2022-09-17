@@ -6,7 +6,7 @@ export default function Login({ setUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoginLoading, setIsLoginLoading] = useState(false);
-  const [failedToLogin, setFailedToLogin] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const onLogin = (e) => {
     e.preventDefault();
@@ -17,8 +17,11 @@ export default function Login({ setUser }) {
         setUser(res.data.user);
       })
       .catch(err => {
-        console.log(err);
-        setFailedToLogin(true);
+        if (err.response.data && typeof(err.response.data) === 'string') {
+          setErrorMessage(err.response.data)
+        } else {
+          setErrorMessage('Failed to login ☹️')
+        }
       })
       .finally(() => {
         setIsLoginLoading(false);
@@ -27,7 +30,7 @@ export default function Login({ setUser }) {
 
   return (
     <div>
-      { failedToLogin && <p className="text-red-200 pb-4">Failed to login ☹️</p> }
+      { errorMessage && <p className="text-red-200 pb-4">{errorMessage}</p> }
       <form onSubmit={onLogin}>
         <div className="pb-2 px-4">
           <input
