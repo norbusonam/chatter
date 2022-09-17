@@ -55,4 +55,4 @@ jobs:
           app-name: 'chatter-api'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1570F28CD2144D67B6814DA96DE3727F }}
-          package: .
+          package: 'backend'
