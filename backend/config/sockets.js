@@ -6,7 +6,7 @@ checkAuth
 
 module.exports = (io) => {
 
-  io.use(checkAuth);
+  // io.use(checkAuth);
   
   io.on('connection', (socket) => {
 
@@ -16,8 +16,6 @@ module.exports = (io) => {
     // room events
     socket.on('room:join', joinRoom(socket));
     socket.on('room:leave', leaveRoom(socket));
-
-    socket.on('disconnect', () => console.log('user disconnected'))
 
   });
 
