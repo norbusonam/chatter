@@ -45,17 +45,24 @@ function App() {
     }
   }, [user]);
 
+  const logoutUser = () => {
+    setUser(null);
+    setRooms([]);
+    setCurrentRoom(null);
+    localStorage('authToken', null);
+  }
+
   return (
     <div>
       {
-        isUserLoading ?
-        <div className="bg-gray-800 w-screen h-screen text-gray-100">
+        isUserLoading || isRoomsLoading ?
+          <div className="bg-gray-800 w-screen h-screen text-gray-100">
             <p>loading...</p>
           </div>
         :
           !!user ?
             <div className='flex'>
-              <Sidebar currentRoom={currentRoom} setCurrentRoom={setCurrentRoom} rooms={rooms} user={user} isRoomsLoading={isRoomsLoading} setUser={setUser}/>
+              <Sidebar currentRoom={currentRoom} setCurrentRoom={setCurrentRoom} rooms={rooms} user={user} logoutUser={logoutUser}/>
               {
                 !!currentRoom ?
                   <Chat room={currentRoom}/>
