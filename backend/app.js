@@ -15,13 +15,13 @@ const app = express();
 app.use(express.json());
 app.use(cors({
   // TODO: make this an enviornment variable
-  origin: ['http://localhost:3000']
+  origin: [process.env.FRONTEND_URL]
 }));
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     // TODO: make this an enviornment variable
-    origin: ['http://localhost:3000']
+    origin: [process.env.FRONTEND_URL]
   }
 });
 
