@@ -14,7 +14,7 @@ export default function Login({ setUser }) {
     login({ username, password })
       .then(res => {
         localStorage.setItem('authToken', 'Bearer ' + res.data.token);
-        setUser(res.data.token);
+        setUser(res.data.user);
       })
       .catch(err => {
         console.log(err);
