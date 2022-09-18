@@ -24,7 +24,7 @@ module.exports = {
     if (!user) {
       return res
         .status(404)
-        .send('A user with that username does not exist');
+        .send('User does not exist');
     }
   
     // check password match
