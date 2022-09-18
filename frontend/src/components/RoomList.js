@@ -9,7 +9,7 @@ export default function RoomList({ currentRoom, setCurrentRoom, rooms }) {
           <RoomListItem 
             key={room.id} 
             room={room} 
-            isSelected={!!currentRoom && currentRoom._id === room._id}
+            isSelected={!!currentRoom && currentRoom.id === room.id}
             setRoom={setCurrentRoom}
           />
         ) 

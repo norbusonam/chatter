@@ -15,14 +15,14 @@ module.exports = {
 
   fn: async (req, res) => {
 
-    const roomId = req.params.room;
-    const { before, limit } = req.query
+    const { roomId } = req.params;
+    const { before, limit } = req.query;
 
     const messages = await Message.find({
       createdAt: {
         $lt: before
       },
-      to: roomId
+      room: roomId
     })
     .limit(limit)
     .sort('createdAt');
