@@ -12,6 +12,7 @@ export default function Signup({ setUser }) {
 
   const onSignup = (e) => {
     e.preventDefault();
+    setErrorMessage('');
     setIsSignupLoading(true);
     signup({ name, email, username, password })
       .then(res => {

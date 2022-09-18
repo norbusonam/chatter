@@ -10,6 +10,7 @@ export default function Login({ setUser }) {
 
   const onLogin = (e) => {
     e.preventDefault();
+    setErrorMessage('');
     setIsLoginLoading(true);
     login({ username, password })
       .then(res => {
