@@ -1,6 +1,6 @@
 const createMessage = require('../controller/socket/message/create');
-const joinRoom = require('../controller/socket/room/join');
-const leaveRoom = require('../controller/socket/room/leave');
+const enterRoom = require('../controller/socket/room/enter');
+const exitRoom = require('../controller/socket/room/exit');
 const checkAuth = require('../middleware/socket/checkAuth');
 checkAuth
 
@@ -11,11 +11,11 @@ module.exports = (io) => {
   io.on('connection', (socket) => {
 
     // message events
-    socket.on('message:create', createMessage(socket, io));;
+    socket.on('message:create', createMessage(io));;
 
     // room events
-    socket.on('room:join', joinRoom(socket));
-    socket.on('room:leave', leaveRoom(socket));
+    socket.on('room:enter', enterRoom(socket));
+    socket.on('room:exit', exitRoom(socket));
 
   });
 

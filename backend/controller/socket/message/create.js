@@ -1,8 +1,8 @@
 const Message = require('../../../models/Message');
 
-module.exports = (socket, io) => {
+module.exports = (io) => {
   return async (message) => {
     const createdMessage = await Message.create(message);
-    io.emit('message:new', createdMessage)
+    io.to(message.room).emit('message:new', createdMessage)
   }
 }

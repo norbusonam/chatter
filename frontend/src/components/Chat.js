@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatNewMessage from "./ChatNewMessage";
@@ -12,6 +12,7 @@ export default function Chat({ room, user }) {
   const [messages, setMessages] = useState([]);
   const [isMessagesLoading, setIsMessagesLoading] = useState(false);
   const [isConnected, setIsConnected] = useState(socket.connected);
+  const prevRoomRef = useRef();
 
   // set up sockets
   useEffect(() => {
@@ -36,7 +37,11 @@ export default function Chat({ room, user }) {
 
   // update chat on room change
   useEffect(() => {
+    if (!!prevRoomRef.current && prevRoomRef.current.id !== room.id) {
+      socket.emit('room:exit', { room: prevRoomRef.current.id });
+    }
     if (!!room) {
+      socket.emit('room:enter', { room: room.id });
       setIsMessagesLoading(true);
       getMessages(room.id, { before: new Date().toISOString() })
         .then(res => {
@@ -49,6 +54,7 @@ export default function Chat({ room, user }) {
           setIsMessagesLoading(false);
         });
     }
+    prevRoomRef.current = room;
   }, [room]);
 
   return (
