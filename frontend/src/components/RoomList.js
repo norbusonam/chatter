@@ -15,7 +15,8 @@ export default function RoomList({ currentRoom, setCurrentRoom, rooms }) {
         ) 
       }
       <button 
-        className={`w-11/12 text-gray-100 hover:bg-gray-700 hover:text-opacity-80 transition-colors rounded-md p-2 text-left mb-1 text-opacity-70`}
+        className='w-11/12 text-gray-100 hover:bg-gray-700 hover:text-opacity-80 transition-colors rounded-md p-2 text-left mb-1 text-opacity-70'
+        onClick={() => setCurrentRoom(null)}
       >
         <p><span>➕</span> Create or join a room</p>
       </button>

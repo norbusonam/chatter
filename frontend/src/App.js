@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Auth from './components/Auth';
 import Chat from "./components/Chat";
-import ChatPlaceholder from './components/ChatPlaceholder'
+import ExploreRooms from './components/ExploreRooms';
 import Sidebar from './components/Sidebar';
 import { getMe, getRooms } from './helpers/api';
 
@@ -70,7 +70,7 @@ function App() {
                 !!currentRoom ?
                   <Chat room={currentRoom} user={user} />
                 :
-                  <ChatPlaceholder />
+                  <ExploreRooms />
               }
             </div>
           :
