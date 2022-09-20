@@ -20,7 +20,6 @@ export default function Signup({ setUser }) {
         setUser(res.data.user);
       })
       .catch(err => {
-        console.log(err.response)
         if (err.response.data && typeof(err.response.data) === 'string') {
           setErrorMessage(err.response.data)
         } else {
