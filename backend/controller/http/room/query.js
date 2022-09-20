@@ -22,8 +22,8 @@ module.exports = {
 
     if (!!query) {
      filter.$or = [
-        { name: { $regex: '.*' + query + '.*' } },
-        { description: { $regex: '.*' + query + '.*' } },
+        { name: new RegExp(query, "i") },
+        { description: new RegExp(query, "i") },
       ];
     }
 
