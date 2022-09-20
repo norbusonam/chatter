@@ -28,10 +28,10 @@ export const createRoom = (payload) => {
   });
 }
 
-export const getRooms = () => {
+export const getRooms = (payload) => {
   // just gets user's rooms for now
   const authToken = window.localStorage.getItem('authToken');
-  return axios.get(API_URL + 'room?onlyMine=true', {
+  return axios.get(API_URL + `room?onlyMine=${payload.onlyMine}&query=${payload.query}`, {
     headers: {
       authorization: authToken,
     },

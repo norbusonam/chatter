@@ -33,7 +33,7 @@ function App() {
   useEffect(() => {
     if (!!user) {
       setIsRoomsLoading(true);
-      getRooms()
+      getRooms({ onlyMine: true, query: '' })
         .then(res => {
           setRooms(res.data.rooms)
         })
@@ -70,7 +70,7 @@ function App() {
                 !!currentRoom ?
                   <Chat room={currentRoom} user={user} />
                 :
-                  <ExploreRooms />
+                  <ExploreRooms setRooms={setRooms} />
               }
             </div>
           :
