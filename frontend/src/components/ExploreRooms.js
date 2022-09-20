@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { getRooms } from "../helpers/api";
+import RoomCard from "./RoomCard";
 
 export default function ExploreRooms({ setRooms }) {
 
@@ -15,9 +16,7 @@ export default function ExploreRooms({ setRooms }) {
     setIsRoomsFromQueryLoading(true);
     getRooms({ onlyMine: false, query })
       .then((res) => {
-        console.log(res.data)
         setRoomsFromQuery(res.data.rooms);
-        setQuery('');
       })
       .catch(err => {
         console.log(err);
@@ -32,20 +31,15 @@ export default function ExploreRooms({ setRooms }) {
 
   return (
     <div className='grow bg-gray-700 flex flex-col max-h-screen'>
-      <h1>Explore rooms!</h1>
+      <h1 className='text-gray-100'>Explore rooms!</h1>
       <form onSubmit={onSearch}>
-        <input type='text' onChange={e => setQuery(e.target.value)}></input>
+        <input type='text-gray-100' value={query} onChange={e => setQuery(e.target.value)}></input>
       </form>
       {
         isRoomsFromQueryLoading ?
-          <p>loading...</p>
+          <p className='text-gray-100'>loading...</p>
         :
-          roomsFromQuery.map(room => (
-            <div key={room.id}>
-              <h1>{room.emoji} {room.name}</h1>
-              <p>{room.description}</p>
-            </div>
-          ))
+          roomsFromQuery.map(room => <RoomCard key={room.id} room={room} />)
       }
     </div>
   )
