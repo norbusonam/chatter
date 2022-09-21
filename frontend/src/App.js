@@ -10,7 +10,6 @@ function App() {
   const [user, setUser] = useState(null);
   const [isUserLoading, setIsUserLoading] = useState(false);
   const [rooms, setRooms] = useState([]);
-  const [isRoomsLoading, setIsRoomsLoading] = useState(false);
   const [currentRoom, setCurrentRoom] = useState(null);
 
   useEffect(() => {
@@ -46,7 +45,6 @@ function App() {
   }
 
   const refreshRooms = () => {
-    setIsRoomsLoading(true);
     getRooms({ onlyMine: true, query: '' })
       .then(res => {
         setRooms(res.data.rooms)
@@ -54,9 +52,6 @@ function App() {
       .catch(err => {
         console.log(err)
       })
-      .finally(() => {
-        setIsRoomsLoading(false)
-      });
   }
 
   return (
@@ -72,7 +67,7 @@ function App() {
               <Sidebar currentRoom={currentRoom} setCurrentRoom={setCurrentRoom} rooms={rooms} user={user} logoutUser={logoutUser}/>
               {
                 !!currentRoom ?
-                  <Chat room={currentRoom} user={user} />
+                  <Chat room={currentRoom} user={user} refreshRooms={refreshRooms} setCurrentRoom={setCurrentRoom} />
                 :
                   <ExploreRooms refreshRooms={refreshRooms} />
               }

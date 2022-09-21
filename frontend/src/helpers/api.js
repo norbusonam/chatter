@@ -64,3 +64,12 @@ export const createUserInRoom = (roomId) => {
     },
   });
 }
+
+export const deleteUserInRoom = (roomId) => {
+  const authToken = window.localStorage.getItem('authToken');
+  return axios.delete(API_URL + `room/${roomId}/user`, {
+    headers: {
+      authorization: authToken,
+    },
+  });
+}

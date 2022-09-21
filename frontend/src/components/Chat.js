@@ -7,7 +7,7 @@ import { getMessages } from '../helpers/api';
 
 const socket = io(process.env.REACT_APP_API_URL);
 
-export default function Chat({ room, user }) {
+export default function Chat({ room, user, refreshRooms, setCurrentRoom }) {
 
   const [messages, setMessages] = useState([]);
   const [isMessagesLoading, setIsMessagesLoading] = useState(false);
@@ -59,8 +59,7 @@ export default function Chat({ room, user }) {
 
   return (
     <div className='grow bg-gray-700 flex flex-col max-h-screen'>
-      <ChatHeader roomEmoji={room.emoji} roomName={room.name} />
-      
+      <ChatHeader room={room} refreshRooms={refreshRooms} setCurrentRoom={setCurrentRoom}/>
       {
         !isConnected && 
           <div className="text-red-300 p-2 bg-gray-500 shadow-md">
