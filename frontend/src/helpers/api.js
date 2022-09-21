@@ -55,3 +55,12 @@ export const getUsersInRoom = (roomId, payload) => {
     },
   });
 }
+
+export const createUserInRoom = (roomId) => {
+  const authToken = window.localStorage.getItem('authToken');
+  return axios.post(API_URL + `room/${roomId}/user`, {}, {
+    headers: {
+      authorization: authToken,
+    },
+  });
+}
