@@ -11,7 +11,16 @@ module.exports = {
   fn: async (req, res) => {
 
     const userId = req.userId;
-    const roomId = req.params.roomId;
+    const { roomId } = req.params;
+
+    const existingUserInRoom = await UserInRoom.findOne({
+      room: roomId,
+      user: userId,
+    });
+
+    if (!!existingUserInRoom) {
+      return res.sendStatus(404);
+    }
 
     await UserInRoom.create({
       room: roomId,
