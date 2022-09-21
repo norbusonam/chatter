@@ -32,17 +32,7 @@ function App() {
 
   useEffect(() => {
     if (!!user) {
-      setIsRoomsLoading(true);
-      getRooms({ onlyMine: true, query: '' })
-        .then(res => {
-          setRooms(res.data.rooms)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-        .finally(() => {
-          setIsRoomsLoading(false)
-        });
+      refreshRooms()
     } else {
       setRooms([]);
     }
@@ -55,10 +45,24 @@ function App() {
     localStorage.removeItem('authToken');
   }
 
+  const refreshRooms = () => {
+    setIsRoomsLoading(true);
+    getRooms({ onlyMine: true, query: '' })
+      .then(res => {
+        setRooms(res.data.rooms)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      .finally(() => {
+        setIsRoomsLoading(false)
+      });
+  }
+
   return (
     <div>
       {
-        isUserLoading || isRoomsLoading ?
+        isUserLoading ?
           <div className="bg-gray-800 w-screen h-screen text-gray-100">
             <p>loading...</p>
           </div>
@@ -70,7 +74,7 @@ function App() {
                 !!currentRoom ?
                   <Chat room={currentRoom} user={user} />
                 :
-                  <ExploreRooms setRooms={setRooms} />
+                  <ExploreRooms refreshRooms={refreshRooms} />
               }
             </div>
           :

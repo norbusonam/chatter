@@ -2,7 +2,7 @@ import { useState } from "react"
 import { getRooms } from "../helpers/api";
 import RoomCard from "./RoomCard";
 
-export default function ExploreRooms({ setRooms }) {
+export default function ExploreRooms({ refreshRooms }) {
 
   const [query, setQuery] = useState('');
   const [roomsFromQuery, setRoomsFromQuery] = useState([]);
@@ -26,16 +26,25 @@ export default function ExploreRooms({ setRooms }) {
   }
 
   return (
-    <div className='grow bg-gray-700 flex flex-col max-h-screen'>
-      <h1 className='text-gray-100'>Explore rooms!</h1>
+    <div className='grow bg-gray-700 flex flex-col max-h-screen p-4'>
       <form onSubmit={onSearch}>
-        <input type='text-gray-100' value={query} onChange={e => setQuery(e.target.value)}></input>
+        <div className="flex justify-center pb-5">
+          <input
+            value={query}
+            autoFocus
+            type="text"
+            placeholder="Room Search"
+            className={'w-96 px-3 h-10 bg-gray-600 text-gray-100 rounded-md outline-none'}
+            onChange={(e) => setQuery(e.target.value)}>
+          </input>
+        </div>
+        
       </form>
       {
         isRoomsFromQueryLoading ?
           <p className='text-gray-100'>loading...</p>
         :
-          roomsFromQuery.map(room => <RoomCard key={room.id} room={room} />)
+          roomsFromQuery.map(room => <RoomCard key={room.id} room={room} refreshRooms={refreshRooms}/>)
       }
     </div>
   )
