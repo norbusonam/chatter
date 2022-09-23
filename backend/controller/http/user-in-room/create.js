@@ -19,7 +19,7 @@ module.exports = {
     });
 
     if (!!existingUserInRoom) {
-      return res.sendStatus(404);
+      return res.sendStatus(400);
     }
 
     await UserInRoom.create({
