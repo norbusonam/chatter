@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { getRooms } from "../helpers/api";
 import RoomCard from "./RoomCard";
 
@@ -7,6 +7,11 @@ export default function ExploreRooms({ refreshRooms }) {
   const [query, setQuery] = useState('');
   const [roomsFromQuery, setRoomsFromQuery] = useState([]);
   const [isRoomsFromQueryLoading, setIsRoomsFromQueryLoading] = useState(false);
+
+  useEffect(() => {
+    queryRooms();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const queryRooms = () => {
     setIsRoomsFromQueryLoading(true);
