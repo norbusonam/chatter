@@ -2,7 +2,9 @@ const Message = require('../../../models/Message');
 
 module.exports = (io) => {
   return async (message) => {
-    const createdMessage = await Message.create(message);
-    io.to(message.room).emit('message:new', createdMessage)
+    // TODO: validate user!
+    const newMessage = await Message.create(message);
+    await newMessage.populate('from', ['username']);
+    io.to(message.room).emit('message:new', newMessage);
   }
 }
