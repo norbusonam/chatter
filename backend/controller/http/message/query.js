@@ -20,13 +20,15 @@ module.exports = {
 
     const messages = await Message.find({
       createdAt: {
-        $lt: before
+        $lte: before,
       },
       room: roomId
     })
     .populate('from', ['username'])
-    .limit(limit)
-    .sort('createdAt');
+    .sort('-createdAt')
+    .limit(limit);
+
+    messages.reverse();
 
     return res.send({
       messages,
