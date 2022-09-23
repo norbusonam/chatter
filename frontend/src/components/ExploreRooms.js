@@ -47,9 +47,12 @@ export default function ExploreRooms({ refreshRooms }) {
       </form>
       {
         isRoomsFromQueryLoading ?
-          <p className='text-gray-100'>loading...</p>
+          <p className='text-gray-100 text-center'>loading...</p>
         :
-          roomsFromQuery.map(room => <RoomCard key={room.id} room={room} refreshRooms={refreshRooms}/>)
+          roomsFromQuery.length === 0 ?
+            <p className='text-gray-100 text-center'>No rooms found ☹️</p>
+          :
+            roomsFromQuery.map(room => <RoomCard key={room.id} room={room} refreshRooms={refreshRooms}/>)
       }
     </div>
   )
