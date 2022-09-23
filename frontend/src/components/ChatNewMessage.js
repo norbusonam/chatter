@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ChatNewMessage({ socket, user, room }) {
 
   const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    setMessage('');
+  }, [room]);
 
   const sendMessageIfEnter = (e) => {
 
@@ -31,6 +35,7 @@ export default function ChatNewMessage({ socket, user, room }) {
         onKeyDown={sendMessageIfEnter}
         onChange={e => setMessage(e.target.value)}
         value={message}
+        autoFocus
         className={`w-full h-10 px-3 pt-2 bg-gray-600 text-gray-100 rounded-md resize-none outline-none`}
         placeholder="Send message...">
       </textarea>
