@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { signup } from "../../src/helpers/api";
+import LoadingSpinner from './LoadingSpinner';
 
 export default function Signup({ setUser }) {
 
@@ -38,6 +39,7 @@ export default function Signup({ setUser }) {
         <div className="pb-2 px-4">
           <input
             value={name}
+            disabled={isSignupLoading}
             type="name"
             placeholder="name"
             className={`w-60 px-3 h-10 bg-gray-600 text-gray-100 rounded-md outline-none`}
@@ -47,6 +49,7 @@ export default function Signup({ setUser }) {
         <div className="pb-2 px-4">
           <input
             value={email}
+            disabled={isSignupLoading}
             type="email"
             placeholder="email"
             className={`w-60 px-3 h-10 bg-gray-600 text-gray-100 rounded-md outline-none`}
@@ -56,6 +59,7 @@ export default function Signup({ setUser }) {
         <div className="pb-2 px-4">
           <input
             value={username}
+            disabled={isSignupLoading}
             type="text"
             placeholder="username"
             className={`w-60 px-3 h-10 bg-gray-600 text-gray-100 rounded-md outline-none`}
@@ -65,6 +69,7 @@ export default function Signup({ setUser }) {
         <div className="pb-2 px-4">
           <input
             value={password}
+            disabled={isSignupLoading}
             type="password"
             placeholder="password"
             className={`w-60 px-3 h-10 bg-gray-600 text-gray-100 rounded-md outline-none`}
@@ -77,7 +82,11 @@ export default function Signup({ setUser }) {
             type="submit"
             className='w-60 text-gray-100 bg-gray-700 hover:bg-gray-900 hover:text-opacity-80 transition-colors rounded-md p-2 mb-1 text-opacity-60 text-center'
             disabled={isSignupLoading}>
-              Signup
+              {
+                isSignupLoading 
+                ? <LoadingSpinner />
+                : "Signup"
+              }
           </button>
         </div>
       </form>
