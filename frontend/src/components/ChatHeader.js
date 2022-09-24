@@ -19,8 +19,10 @@ export default function ChatHeader({ room, refreshRooms, setCurrentRoom }) {
         { room.emoji } { room.name }
       </div>
       <div>
-        <button onClick={leaveRoom} className='text-gray-100'>
-          leave
+        <button
+          className='h-8 px-2 mx-2 rounded-md hover:bg-opacity-50 bg-opacity-30 transition-colors bg-red-500 text-gray-100'
+          onClick={leaveRoom}>
+            leave
         </button>
       </div>
     </div>
