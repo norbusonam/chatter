@@ -24,7 +24,7 @@ module.exports = {
       },
       room: roomId
     })
-    .populate('from', ['username'])
+    .populate('from', ['username', 'name'])
     .sort('-createdAt')
     .limit(limit);
 

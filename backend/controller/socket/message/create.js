@@ -4,7 +4,7 @@ module.exports = (io) => {
   return async (message) => {
     // TODO: validate user!
     const newMessage = await Message.create(message);
-    await newMessage.populate('from', ['username']);
+    await newMessage.populate('from', ['username', 'name']);
     io.to(message.room).emit('message:new', newMessage);
   }
 }

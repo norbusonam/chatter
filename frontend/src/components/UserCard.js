@@ -3,7 +3,7 @@ export default function UserCard({ user, logoutUser }) {
   return (
     <div className="bg-gray-900 text-gray-100 text-lg p-2 shrink">
       <div>
-        {user.username}
+        {user.name}
       </div>
       <div>
         <button onClick={logoutUser}>
