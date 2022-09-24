@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { getRooms } from "../helpers/api";
 import RoomCard from "./RoomCard";
+import CenteredText from "./CenteredText"
 
 export default function ExploreRooms({ refreshRooms, userRooms }) {
 
@@ -56,10 +57,10 @@ export default function ExploreRooms({ refreshRooms, userRooms }) {
       </form>
       {
         isRoomsFromQueryLoading ?
-          <p className='text-gray-100 text-center'>loading...</p>
+          <CenteredText text='loading...'/>
         :
           roomsFromQuery.length === 0 ?
-            <p className='text-gray-100 text-center'>No rooms found 😟</p>
+            <CenteredText text='No rooms found 😟'/>
           :
             roomsFromQuery.map(room => <RoomCard key={room.id} room={room} refreshRooms={refreshRooms} userIsInRoom={isUserInRoom(room)}/>)
       }

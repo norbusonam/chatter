@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Auth from './components/Auth';
+import CenteredText from './components/CenteredText';
 import Chat from "./components/Chat";
 import ExploreRooms from './components/ExploreRooms';
 import Sidebar from './components/Sidebar';
@@ -24,14 +25,14 @@ function App() {
           console.log(err);
         })
         .finally(() => {
-          setIsUserLoading(false)
+          setIsUserLoading(false);
         });
     }
   }, []);
 
   useEffect(() => {
     if (!!user) {
-      refreshRooms()
+      refreshRooms();
     } else {
       setRooms([]);
     }
@@ -47,20 +48,19 @@ function App() {
   const refreshRooms = () => {
     getRooms({ onlyMine: true, query: '' })
       .then(res => {
-        setRooms(res.data.rooms)
+        setRooms(res.data.rooms);
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
       })
   }
 
   return (
     <div>
       {
-        isUserLoading ?
-          <div className="bg-gray-800 w-screen h-screen text-gray-100">
-            <p>loading...</p>
-          </div>
+        isUserLoading 
+        ?
+          <CenteredText text='loading...' />
         :
           !!user ?
             <div className='flex'>

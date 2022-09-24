@@ -4,6 +4,7 @@ import ChatMessages from "./ChatMessages";
 import ChatNewMessage from "./ChatNewMessage";
 import io from 'socket.io-client';
 import { getMessages } from '../helpers/api';
+import CenteredText from "./CenteredText";
 
 const socket = io(process.env.REACT_APP_API_URL);
 
@@ -69,10 +70,10 @@ export default function Chat({ room, user, refreshRooms, setCurrentRoom }) {
       {
         isMessagesLoading
           ?
-            <div className="grow text-gray-100"><p>loading...</p></div>
+            <CenteredText text='loading...' />
           :
             messages.length === 0
-            ? <div className="grow text-gray-100 width-full height-full flex items-center justify-center"><p>This room is lonley 😟 there are no messages here.</p></div>
+            ? <CenteredText text="This room is lonley 😟 there are no messages here." />
             : <ChatMessages messages={messages} />
 
       }
