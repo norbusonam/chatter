@@ -63,13 +63,18 @@ export default function Chat({ room, user, refreshRooms, setCurrentRoom }) {
       {
         !isConnected && 
           <div className="text-red-300 p-2 bg-gray-500 shadow-md">
-            Socket failed to connected, messages may not be up to date ☹️ <button onClick={() => window.location.reload()} className='underline'>try refreshing</button>
+            Socket failed to connected, messages may not be up to date 😟 <button onClick={() => window.location.reload()} className='underline'>try refreshing</button>
           </div>
       }
       {
-        isMessagesLoading 
-          ? <div className="grow text-gray-100"><p>loading...</p></div>
-          : <ChatMessages messages={messages}/>
+        isMessagesLoading
+          ?
+            <div className="grow text-gray-100"><p>loading...</p></div>
+          :
+            messages.length === 0
+            ? <div className="grow text-gray-100 width-full height-full flex items-center justify-center"><p>This room is lonley 😟 there are no messages here.</p></div>
+            : <ChatMessages messages={messages} />
+
       }
       <ChatNewMessage socket={socket} user={user} room={room} />
     </div>
