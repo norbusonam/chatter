@@ -40,7 +40,7 @@ export default function ExploreRooms({ refreshRooms, userRooms }) {
   }
 
   return (
-    <div className='grow bg-gray-700 flex flex-col max-h-screen p-4'>
+    <div className='grow bg-gray-700 flex flex-col max-h-screen p-4 overflow-y-scroll'>
       <form onSubmit={onSearch}>
         <div className="flex justify-center pb-5">
           <input
