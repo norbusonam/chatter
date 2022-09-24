@@ -58,7 +58,7 @@ export default function Chat({ room, user, refreshRooms, setCurrentRoom }) {
   }, [room]);
 
   return (
-    <div className='grow bg-gray-700 flex flex-col max-h-screen'>
+    <div className='grow bg-gray-700 flex flex-col max-h-screen min-w-0'>
       <ChatHeader room={room} refreshRooms={refreshRooms} setCurrentRoom={setCurrentRoom}/>
       {
         !isConnected && 
