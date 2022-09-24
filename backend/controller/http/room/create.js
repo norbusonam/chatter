@@ -9,7 +9,7 @@ module.exports = {
       .isString()
       .isLength({ 
         min: 5,
-        max: 15,
+        max: 25,
       }),
     body('emoji')
       .isString()

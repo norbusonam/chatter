@@ -6,7 +6,7 @@ const roomSchema = mongoose.Schema({
     type: String,
     required: true,
     minLength: 5,
-    maxLength: 15,
+    maxLength: 25,
   },
   emoji: {
     type: String,
