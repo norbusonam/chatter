@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getRooms } from "../helpers/api";
 import RoomCard from "./RoomCard";
 
-export default function ExploreRooms({ refreshRooms }) {
+export default function ExploreRooms({ refreshRooms, userRooms }) {
 
   const [query, setQuery] = useState('');
   const [roomsFromQuery, setRoomsFromQuery] = useState([]);
@@ -30,6 +30,15 @@ export default function ExploreRooms({ refreshRooms }) {
     queryRooms();
   }
 
+  const isUserInRoom = (room) => {
+    for (let r of userRooms) {
+      if (r.id === room.id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   return (
     <div className='grow bg-gray-700 flex flex-col max-h-screen p-4'>
       <form onSubmit={onSearch}>
@@ -52,7 +61,7 @@ export default function ExploreRooms({ refreshRooms }) {
           roomsFromQuery.length === 0 ?
             <p className='text-gray-100 text-center'>No rooms found ☹️</p>
           :
-            roomsFromQuery.map(room => <RoomCard key={room.id} room={room} refreshRooms={refreshRooms}/>)
+            roomsFromQuery.map(room => <RoomCard key={room.id} room={room} refreshRooms={refreshRooms} userIsInRoom={isUserInRoom(room)}/>)
       }
     </div>
   )

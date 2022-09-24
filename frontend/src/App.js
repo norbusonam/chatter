@@ -69,7 +69,7 @@ function App() {
                 !!currentRoom ?
                   <Chat room={currentRoom} user={user} refreshRooms={refreshRooms} setCurrentRoom={setCurrentRoom} />
                 :
-                  <ExploreRooms refreshRooms={refreshRooms} />
+                  <ExploreRooms refreshRooms={refreshRooms} userRooms={rooms}/>
               }
             </div>
           :
