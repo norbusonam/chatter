@@ -27,7 +27,7 @@ export default function RoomCard({ room, refreshRooms, userIsInRoom }) {
 
   return (
     <div 
-      className='w-full text-gray-100 bg-gray-600 hover:bg-gray-800 transition-colors rounded-md p-2 text-left mb-2 flex items-center transition-colors'
+      className='w-full text-gray-100 bg-gray-600 hover:bg-gray-800 transition-colors rounded-md p-2 text-left mb-2 flex items-center'
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
