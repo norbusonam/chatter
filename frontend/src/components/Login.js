@@ -21,7 +21,7 @@ export default function Login({ setUser }) {
         if (err.response.data && typeof(err.response.data) === 'string') {
           setErrorMessage(err.response.data)
         } else {
-          setErrorMessage('Failed to login ☹️')
+          setErrorMessage('Failed to login 😟')
         }
       })
       .finally(() => {

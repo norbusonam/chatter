@@ -23,7 +23,7 @@ export default function Signup({ setUser }) {
         if (err.response.data && typeof(err.response.data) === 'string') {
           setErrorMessage(err.response.data)
         } else {
-          setErrorMessage('Failed to signup ☹️')
+          setErrorMessage('Failed to signup 😟')
         }
       })
       .finally(() => {

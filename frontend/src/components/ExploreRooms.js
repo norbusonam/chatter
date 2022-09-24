@@ -59,7 +59,7 @@ export default function ExploreRooms({ refreshRooms, userRooms }) {
           <p className='text-gray-100 text-center'>loading...</p>
         :
           roomsFromQuery.length === 0 ?
-            <p className='text-gray-100 text-center'>No rooms found ☹️</p>
+            <p className='text-gray-100 text-center'>No rooms found 😟</p>
           :
             roomsFromQuery.map(room => <RoomCard key={room.id} room={room} refreshRooms={refreshRooms} userIsInRoom={isUserInRoom(room)}/>)
       }
