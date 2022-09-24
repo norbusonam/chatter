@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import Auth from './components/Auth';
-import CenteredText from './components/CenteredText';
 import Chat from "./components/Chat";
 import ExploreRooms from './components/ExploreRooms';
+import LoadingSpinner from './components/LoadingSpinner';
 import Sidebar from './components/Sidebar';
 import { getMe, getRooms } from './helpers/api';
 
@@ -60,7 +60,7 @@ function App() {
       {
         isUserLoading 
         ?
-          <CenteredText text='loading...' />
+          <LoadingSpinner />
         :
           !!user ?
             <div className='flex'>

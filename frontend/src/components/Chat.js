@@ -5,6 +5,7 @@ import ChatNewMessage from "./ChatNewMessage";
 import io from 'socket.io-client';
 import { getMessages } from '../helpers/api';
 import CenteredText from "./CenteredText";
+import LoadingSpinner from "./LoadingSpinner";
 
 const socket = io(process.env.REACT_APP_API_URL);
 
@@ -70,7 +71,7 @@ export default function Chat({ room, user, refreshRooms, setCurrentRoom }) {
       {
         isMessagesLoading
           ?
-            <CenteredText text='loading...' />
+            <LoadingSpinner />
           :
             messages.length === 0
             ? <CenteredText text="This room is lonley 😟 there are no messages here." />

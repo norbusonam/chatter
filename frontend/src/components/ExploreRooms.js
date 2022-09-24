@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getRooms } from "../helpers/api";
 import RoomCard from "./RoomCard";
 import CenteredText from "./CenteredText"
+import LoadingSpinner from "./LoadingSpinner";
 
 export default function ExploreRooms({ refreshRooms, userRooms }) {
 
@@ -57,7 +58,7 @@ export default function ExploreRooms({ refreshRooms, userRooms }) {
       </form>
       {
         isRoomsFromQueryLoading ?
-          <CenteredText text='loading...'/>
+          <LoadingSpinner />
         :
           roomsFromQuery.length === 0 ?
             <CenteredText text='No rooms found 😟'/>
