@@ -15,7 +15,7 @@ module.exports = {
       .isString()
       .isLength({
         min: 1,
-        max: 1,
+        max: 3,
       }),
     body('description')
       .isString(),
