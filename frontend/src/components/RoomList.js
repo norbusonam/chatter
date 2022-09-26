@@ -3,7 +3,7 @@ import RoomListItem from "./RoomListItem";
 export default function RoomList({ currentRoom, setCurrentRoom, rooms }) {
 
   return (
-    <div className="bg-gray-800 text-center px-1 pt-2 grow overflow-scroll">
+    <div className="bg-gray-800 text-center px-1 pt-2 grow overflow-y-scroll">
       {
         rooms.map(room =>
           <RoomListItem 
