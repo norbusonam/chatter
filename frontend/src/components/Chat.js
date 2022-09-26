@@ -6,6 +6,7 @@ import io from 'socket.io-client';
 import { getMessages } from '../helpers/api';
 import CenteredText from "./CenteredText";
 import LoadingSpinner from "./LoadingSpinner";
+import MemberList from "./MemberList";
 
 const socket = io(process.env.REACT_APP_API_URL);
 
@@ -13,6 +14,7 @@ export default function Chat({ room, user, refreshRooms, setCurrentRoom }) {
 
   const [messages, setMessages] = useState([]);
   const [isMessagesLoading, setIsMessagesLoading] = useState(false);
+  const [isShowingMembers, setIsShowingMembers] = useState(false);
   const [isConnected, setIsConnected] = useState(socket.connected);
   const prevRoomRef = useRef();
 
@@ -59,26 +61,39 @@ export default function Chat({ room, user, refreshRooms, setCurrentRoom }) {
     prevRoomRef.current = room;
   }, [room]);
 
-  return (
-    <div className='grow bg-gray-700 flex flex-col max-h-screen min-w-0'>
-      <ChatHeader room={room} refreshRooms={refreshRooms} setCurrentRoom={setCurrentRoom}/>
-      {
-        !isConnected && 
-          <div className="text-red-300 p-2 bg-gray-500 shadow-md">
-            Socket failed to connected, messages may not be up to date 😟 <button onClick={() => window.location.reload()} className='underline'>try refreshing</button>
-          </div>
-      }
-      {
-        isMessagesLoading
-          ?
-            <LoadingSpinner />
-          :
-            messages.length === 0
-            ? <CenteredText text="This room is lonely 😟 there are no messages here." />
-            : <ChatMessages messages={messages} />
+  const showMembers = () => {
+    setIsShowingMembers(true);
+  }
 
+
+  const hideMembers = () => {
+    setIsShowingMembers(false);
+  }
+
+  return (
+    <div className="grow bg-gray-700 flex max-h-screen min-w-0">
+      <div className='grow bg-gray-700 flex flex-col max-h-screen min-w-0'>
+        <ChatHeader room={room} refreshRooms={refreshRooms} setCurrentRoom={setCurrentRoom} isShowingMembers={isShowingMembers} hideMembers={hideMembers} showMembers={showMembers}/>
+        {
+          !isConnected &&
+            <div className="text-red-300 p-2 bg-gray-500 shadow-md">
+              Socket failed to connected, messages may not be up to date 😟 <button onClick={() => window.location.reload()} className='underline'>try refreshing</button>
+            </div>
+        }
+        {
+          isMessagesLoading
+            ?
+              <LoadingSpinner />
+            :
+              messages.length === 0
+              ? <CenteredText text="This room is lonely 😟 there are no messages here." />
+              : <ChatMessages messages={messages} />
+        }
+        <ChatNewMessage socket={socket} user={user} room={room} />
+      </div>
+      {
+        isShowingMembers && <MemberList room={room} />
       }
-      <ChatNewMessage socket={socket} user={user} room={room} />
     </div>
   )
 

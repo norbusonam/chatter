@@ -47,7 +47,7 @@ export const getMessages = (roomId, payload) => {
   });
 }
 
-export const getUsersInRoom = (roomId, payload) => {
+export const getUsersInRoom = (roomId) => {
   const authToken = window.localStorage.getItem('authToken');
   return axios.get(API_URL + `room/${roomId}/user`, {
     headers: {
