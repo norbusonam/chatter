@@ -74,7 +74,7 @@ export default function Chat({ room, user, refreshRooms, setCurrentRoom }) {
             <LoadingSpinner />
           :
             messages.length === 0
-            ? <CenteredText text="This room is lonley 😟 there are no messages here." />
+            ? <CenteredText text="This room is lonely 😟 there are no messages here." />
             : <ChatMessages messages={messages} />
 
       }
