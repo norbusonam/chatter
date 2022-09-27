@@ -20,12 +20,12 @@ export default function ChatHeader({ room, refreshRooms, setCurrentRoom, isShowi
       </div>
       <div>
         <button
-          className='h-8 px-2 mx-2 rounded-md hover:bg-opacity-50 bg-opacity-30 transition-colors bg-blue-500 text-gray-100'
+          className='h-8 px-2 mx-1 rounded-md hover:bg-opacity-50 bg-opacity-30 transition-colors bg-blue-500 text-gray-100'
           onClick={ isShowingMembers ? hideMembers : showMembers }>
             { isShowingMembers ? 'Hide members' : 'Show members'}
         </button>
         <button
-          className='h-8 px-2 mx-2 rounded-md hover:bg-opacity-50 bg-opacity-30 transition-colors bg-red-500 text-gray-100'
+          className='h-8 px-2 mx-1 rounded-md hover:bg-opacity-50 bg-opacity-30 transition-colors bg-red-500 text-gray-100'
           onClick={leaveRoom}>
             Leave
         </button>
