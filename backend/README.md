@@ -28,3 +28,5 @@
 | Event Name     | Description      |
 |----------------|------------------|
 | message:create | Create a message |
+| room:enter     | Enter a room     |
+| room:exit      | Exit a room      |
