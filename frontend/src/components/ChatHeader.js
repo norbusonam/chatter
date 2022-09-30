@@ -6,7 +6,7 @@ export default function ChatHeader({ room, refreshRooms, setCurrentRoom, isShowi
     deleteUserInRoom(room.id)
       .then(_ => {
         refreshRooms();
-        setCurrentRoom();
+        setCurrentRoom(null);
       })
       .catch(err => {
         console.log(err);
