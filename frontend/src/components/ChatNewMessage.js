@@ -16,9 +16,8 @@ export default function ChatNewMessage({ socket, user, room }) {
       e.preventDefault();
       e.stopPropagation();
       if (!!message) {
-        // TODO: this really needs to be authenticated
-        // const authToken = localStorage.getItem('authToken');
-        socket.emit('message:create', {
+        const authToken = localStorage.getItem('authToken');
+        socket.emit('message:create', authToken, {
           from: user.id,
           room: room.id,
           body: message,

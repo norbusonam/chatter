@@ -1,12 +1,8 @@
 const createMessage = require('../controller/socket/message/create');
 const enterRoom = require('../controller/socket/room/enter');
 const exitRoom = require('../controller/socket/room/exit');
-const checkAuth = require('../middleware/socket/checkAuth');
-checkAuth
 
 module.exports = (io) => {
-
-  // io.use(checkAuth);
   
   io.on('connection', (socket) => {
 

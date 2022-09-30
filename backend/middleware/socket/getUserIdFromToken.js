@@ -1,8 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-module.exports = (socket, next) => {
-
-  const authorizationToken = socket.handshake.auth.token;
+module.exports = (authorizationToken) => {
 
   if (authorizationToken) {
     const token = authorizationToken.split(' ')[1];
@@ -14,11 +12,10 @@ module.exports = (socket, next) => {
       verifySuccess = false;
     }
     if (verifySuccess && decodedToken && decodedToken.userId) {
-      socket.userId = decodedToken.userId;
-      return next();
+      return decodedToken.userId;
     }
   }
   
-  next(new Error("user is not authorized"));
+  return null;
 
 }
