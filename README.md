@@ -7,13 +7,13 @@ Chatter is chat app where you can communicate with other users in rooms.
 ## Technologies used 👨🏻
 
 - Backend
-  - Express
-  - Socket.IO
-  - MongoDB
+  - [Express](https://expressjs.com)
+  - WebSockets (w/ [Socket.IO](https://socket.io))
+  - MongoDB (w/ [mongoose](https://mongoosejs.com))
   - REST API
 - Frontend
-  - React
-  - Tailwind CSS
+  - [React](https://reactjs.org)
+  - [Tailwind](https://tailwindcss.com)
 
 ## How to get Chatter up and running 🏃🏻
 
